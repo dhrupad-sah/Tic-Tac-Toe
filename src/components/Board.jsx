@@ -5,7 +5,14 @@ const Board = props => {
 
   const [squares, setSquares] = useState( Array(9).fill(null) );
 
+  const [isXNext, setIsXNext] = useState(false);
+
   const handleSquareClick = (clickedposition)=>{
+
+    if(squares[clickedposition])
+    {
+      return;
+    }
 
     setSquares((currSquares)=>
     {
@@ -13,11 +20,16 @@ const Board = props => {
       {
         if(position===clickedposition)
         {
-          return 'X';
+          return isXNext ? 'X' : 'O';
         }
 
         return squareValue;
       })
+    })
+
+    setIsXNext((currIsXNext)=>
+    {
+      return !currIsXNext;
     })
 
   }
